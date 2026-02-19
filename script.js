@@ -18,18 +18,18 @@ let number = '';
 let operator;
 let secondNumber = '';
 
-                            function operate(number, operator, secondNumber) {
-                                //Call one operator function
-                                if(operator === 'add') {
-                                    return add(number, secondNumber);
-                                } else if (operator === 'substract') {
-                                    return subtract(number, secondNumber);
-                                } else if (operator === 'multiply') {
-                                    return multiply(number, secondNumber);
-                                } else if (operator === 'divide') {
-                                    return divide(number, secondNumber);
-                                } else return "ERROR";
-                            };
+function operate(a, sign, b) {
+    //Call one operator function
+    if(sign === '+') {
+        return add(a, b);
+    } else if (sign === '-') {
+        return subtract(a, b);
+    } else if (sign === 'x') {
+        return multiply(a, b);
+    } else if (sign === '÷') {
+        return divide(a, b);
+    } else return "ERROR";
+};
 
 const screen = document.querySelector('.screen');
 const numbers = document.querySelectorAll('.number');
@@ -41,10 +41,14 @@ const equalsTo = document.querySelector('#btnEquals');
 
 for(let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener('click', () => {
-        number += numbers[i].textContent;
-        screen.textContent = number;
-        if (operator !== undefined) {
-            console.log('hi')
+        if(operator == undefined){
+            number += numbers[i].textContent;
+            screen.textContent = number;
+        } else {
+            secondNumber += numbers[i].textContent;
+            screen.textContent = secondNumber;
+            console.log('hihihi');
+            console.log(operator)
         }
     });
 };
@@ -55,5 +59,8 @@ for(let j = 0; j < operands.length; j++) {
     });
 };
 
+equalsTo.addEventListener('click', () => {
+    console.log(operate(number, operator, secondNumber));
+})
 
 
