@@ -16,20 +16,20 @@ function divide(a, b) {
 
 let number = '';
 let operator;
-let secondNumber;
+let secondNumber = '';
 
-function operate(number, operator, secondNumber) {
-    //Call one operator function
-    if(operator === 'add') {
-        return add(number, secondNumber);
-    } else if (operator === 'substract') {
-        return subtract(number, secondNumber);
-    } else if (operator === 'multiply') {
-        return multiply(number, secondNumber);
-    } else if (operator === 'divide') {
-        return divide(number, secondNumber);
-    } else return "ERROR"
-};
+                            function operate(number, operator, secondNumber) {
+                                //Call one operator function
+                                if(operator === 'add') {
+                                    return add(number, secondNumber);
+                                } else if (operator === 'substract') {
+                                    return subtract(number, secondNumber);
+                                } else if (operator === 'multiply') {
+                                    return multiply(number, secondNumber);
+                                } else if (operator === 'divide') {
+                                    return divide(number, secondNumber);
+                                } else return "ERROR";
+                            };
 
 const screen = document.querySelector('.screen');
 const numbers = document.querySelectorAll('.number');
@@ -42,9 +42,18 @@ const equalsTo = document.querySelector('#btnEquals');
 for(let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener('click', () => {
         number += numbers[i].textContent;
-        screen.textContent = number
+        screen.textContent = number;
+        if (operator !== undefined) {
+            console.log('hi')
+        }
     });
 };
 
-if (number == '22') console.log(number)
+for(let j = 0; j < operands.length; j++) {
+    operands[j].addEventListener('click', () => {
+        operator = operands[j].textContent;
+    });
+};
+
+
 
