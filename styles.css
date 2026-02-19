@@ -53,9 +53,13 @@ body {
     padding: 15px;
 }
 
-#btn0, #equals {
+#btn0, #btnEquals {
     width: 128px;
     border-radius: 2.5rem;
+}
+
+.operand {
+    background-color: orange;
 }
 
 
