@@ -62,5 +62,3 @@ for(let j = 0; j < operands.length; j++) {
 equalsTo.addEventListener('click', () => {
     console.log(operate(number, operator, secondNumber));
 })
-
-
