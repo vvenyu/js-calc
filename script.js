@@ -40,22 +40,20 @@ function operate(a, sign, b) {
 
 const screen = document.querySelector('.screen');
 const numbers = document.querySelectorAll('.number');
-//const btnBackspace = document.querySelector('#backspace');
-const operands = document.querySelectorAll('.operand')
+const btnBackspace = document.querySelector('#backspace');
+const operands = document.querySelectorAll('.operand');
 const btnClear = document.querySelector('#btnClear');
-//const btnComa = document.querySelector('#btnComa');
+const btnComa = document.querySelector('#btnComa');
 
 for(let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener('click', () => {
         if(operator == undefined){
             number += numbers[i].textContent;
             screen.textContent = number;
-            console.log(`firstNumber: ${number}`);
         } else {
             secondNumber += numbers[i].textContent;
             screen.textContent = secondNumber;
-            console.log(`secondNumber ${secondNumber}`);
-        }
+        };
     });
 };
 
@@ -64,15 +62,18 @@ for(let j = 0; j < operands.length; j++) {
         if(operands[j].textContent !== '=') {
             if(operator == undefined) {
                 operator = operands[j].textContent;
-                console.log(`operator: ${operator}`)
             } else {
                 result = operate(number, operator, secondNumber);
                 operator = operands[j].textContent;
-                console.log(`secondOperator: ${operator}`);
                 secondNumber = '';
-                number = String(result);
-                screen.textContent = number;
-            }
+                if(result === 'Syntax Error') {
+                    number = '';
+                    screen.textContent = 'Syntax Error';
+                } else { 
+                    number = String(result);
+                    screen.textContent = number;
+                };
+            };
         } else {
             if(operator == undefined) {
                 return
@@ -80,10 +81,13 @@ for(let j = 0; j < operands.length; j++) {
                 result = operate(number, operator, secondNumber);
                 operator = undefined;
                 secondNumber = '';
-                number = String(result)
-                screen.textContent = number;
-    
-                console.log(number);
+                if(result === 'Syntax Error') {
+                    number = '';
+                    screen.textContent = 'Syntax Error'
+                } else { 
+                    number = result;
+                    screen.textContent = result;
+                };
             };
         };
     });
@@ -97,4 +101,34 @@ btnClear.addEventListener('click', () => {
     operator = undefined;
     secondNumber = '';
     screen.textContent = '';
+});
+
+//Coma button
+btnComa.addEventListener('click', () => {
+    if (number !== '' && secondNumber == '') {
+        if (number.includes('.') === true){
+            return;
+        } else {
+            number += '.';
+            screen.textContent = number;
+        };
+    } else {
+        if (secondNumber.includes('.') === true){
+            return;
+        } else {
+            secondNumber += '.';
+            screen.textContent = secondNumber;
+        };
+    };
+});
+
+//Backspace button
+btnBackspace.addEventListener('click', () => {
+    if(number !== '' && secondNumber ==''){
+        number = number.slice(0, -1);
+        screen.textContent = number;
+    } else {
+        secondNumber = secondNumber.slice(0, -1);
+        screen.textContent = secondNumber;
+    };
 });
