@@ -85,7 +85,7 @@ for(let j = 0; j < operands.length; j++) {
                     number = '';
                     screen.textContent = 'Syntax Error'
                 } else { 
-                    number = result;
+                    number = '';
                     screen.textContent = result;
                 };
             };
