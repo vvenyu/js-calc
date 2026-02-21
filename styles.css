@@ -66,5 +66,8 @@ button:hover {
     opacity: 70%;
 }
 
+.selectedOperand {
+    border: 2px solid red;
+}
 
 
